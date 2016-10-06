@@ -1,0 +1,1166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html><head><link rel="shortcut icon" href="http://www.google.com/images/spreadsheets/forms/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>Rempstone Adventure Camp 2016</title>
+<link href='apply_compiled.css' type='text/css' rel='stylesheet' />
+<!-- <link href='//spreadsheets.google.com/client/css/3386678453-published_form_compiled.css' type='text/css' rel='stylesheet' /> -->
+
+<style type="text/css">
+<!--
+#ref_01 {
+    display: none;
+}
+#group_60_1 {
+    display: none;
+}
+#group_60_2 {
+    display: none;
+}
+#noentry_61 {
+    display: none;
+}
+.ss-choice-item-hidden {
+    display: none;
+}
+#table {
+    border-width: 0px 0px 0px 0px;
+}
+#table th {
+	padding: 0px 0px 0px 0px;
+}
+#table td {
+	padding: 0px 5px 0px 5px;
+}
+a.tip {
+	border-bottom: 1px;
+	text-decoration: none;
+	padding-left: 15px;
+	padding-right: 20px;
+	background: #74A8E6 url(status-info-s.png) 100% 5% no-repeat;
+	color:  #587505;
+}
+
+#transparent a {
+	color:  #E1F63E;	
+}
+
+a.tip:hover {
+	position: relative;
+	cursor: help;
+}
+
+a.tip span {
+	display: none;
+}
+
+a.tip:hover span {
+	display: block;
+   	position: absolute; top: 0px; left: 15px;
+	/* formatting only styles */
+   	padding: 5px; margin: 0px; z-index: 100;
+   	border: none;
+    text-decoration: none;
+	padding-right: 20px;
+	background: #f0f0f0 url(status-info.png) 100% 5% no-repeat;
+	width: 250px;
+	opacity: 0.9;
+	font-weight: normal;
+	/* end formatting */
+}
+
+-->
+</style>
+ 
+<script language="JavaScript">
+    <!--
+      var months   = new Array( "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" );
+      var emailReg = /.+@.+\..{2,}/;
+      var dateReg  = /^\d{1,2}[ /-]((\d{1,2})|([A-Za-z][a-z]{2,}))[ /-]\d{2,4}$/;
+      var date1Reg = /^(\d{1,2})[\./-](\d{1,2})[\./-](\d{2,4})$/;
+      var date2Reg = /^(\d{1,2}) (janu?a?r?y?|febr?u?a?r?y?|marc?h?|apri?l?|may|june?|july?|augu?s?t?|sept?e?m?b?e?r?|octo?b?e?r?|nove?m?b?e?r?|dece?m?b?e?r?) (\d{2,4})$/i;
+      var postReg  = /(^[a-zA-Z]{1,2}\d[0-9a-zA-Z]{0,1} \d[a-zA-Z][a-zA-Z]$)/i;
+      var phoneReg = /^\+?\d[0-9\(\)]{10,15}$/;
+      var frm2 = document.getElementById("ss-form2");
+
+
+      var errCol  = "#ff8080";
+      var warnCol = "#ffe080";
+      var surnameErr   = "Please enter your child's surname\n";
+      var firstnameErr = "Please enter your child's first name\n";
+      var dobErr       = "Please enter your child's correct date-of-birth (e.g. '12 Jan 1996')\n";
+      var schoolErr    = "Please enter the name of your child's school\n";
+      var yearErr      = "Please select your child's current school year\n";
+      var genderErr    = "Please select your child's gender\n";
+      var titleErr     = "Please enter your title (e.g. 'Mr')\n";
+      var pnameErr     = "Please enter your full name in 'Parent's name' field (e.g. 'Helen Bethell')\n";
+      var addrErr      = "Please enter the first line of your address (e.g. '10 Downing Street')\n";
+      var townErr      = "Please enter your postal town (e.g. 'POOLE')\n";
+      var countyErr    = "Please enter your postal county (e.g. 'Dorset')\n";
+      var postErr      = "Please enter your full postcode (e.g. 'BH20 5JH')\n";
+      var phoneErr     = "Please enter at least one contact phone number ('Home' or 'Mobile')\n";
+      var emailErr     = "Please enter a valid email address for all correspondence (e.g. 'myname@myISP.co.uk')\n";
+      var payOptErr    = "Please select payment option (full, deposit or membership-only)\n";
+      var payMethodErr = "Please select payment method (direct or cheque)\n";
+
+      function capital(box) {
+          var a=box.value.split(/\s+/g);
+          for (i = 0 ; i < a.length ; i ++ ) {
+              a[i] = a[i].substring(0, 1).toUpperCase() + a[i].substring(1);
+          }
+          box.value = a.join(' ');
+      }
+
+      function capital2(box) {
+          var a=box.value.split(/-+/g);
+          for (i = 0 ; i < a.length ; i ++ ) {
+              a[i] = a[i].substring(0, 1).toUpperCase() + a[i].substring(1);
+          }
+          box.value = a.join('-');
+      }
+
+      function checkLength(box, status, minLength, errString, bColor) {
+        var OK = true;
+        if (status.value.indexOf(errString) == -1) {
+          if (box.value.length < minLength) {
+            status.value += errString;
+            OK = false;
+            box.style.backgroundColor=bColor;
+          }
+          else
+            box.style.backgroundColor="#ffffff";
+        }
+        else {
+          if (box.value.length < minLength) {
+            OK = false;
+          } else {
+            status.value.replace(errString, "");
+            box.style.backgroundColor="#ffffff";
+          }
+        }
+        return OK;
+      }
+
+      function checkReg(box, status, theReg, errString, bColor) {
+        var OK = true;
+        if (status.value.indexOf(errString) == -1) {
+          if (box.value.search(theReg) == -1) {
+            status.value += errString;
+            OK = false;
+            box.style.backgroundColor=bColor;
+          }
+          else
+            box.style.backgroundColor="#ffffff";
+        }
+        else {
+          if (box.value.search(theReg) == -1) {
+            OK = false;
+          } else {
+            status.value.replace(errString, "");
+            box.style.backgroundColor="#ffffff";
+          }
+        }
+        return OK;
+      }
+
+      function checkRegNoSpace(box, status, theReg, errString, bColor) {
+        var OK = true;
+        if (status.value.indexOf(errString) == -1) {
+          if (box.value.replace(/\s/g,"").search(theReg) == -1) {
+              status.value += errString;
+              OK = false;
+              box.style.backgroundColor=bColor;
+          }
+          else
+              box.style.backgroundColor="#ffffff";
+        }
+        else {
+          if (box.value.replace(/\s/g,"").search(theReg) == -1) {
+              OK = false;
+          } else {
+              status.value.replace(errString, "");
+              box.style.backgroundColor="#ffffff";
+          }
+        }
+        return OK;
+      }
+
+      function warnReg(box, theReg) {
+        if ( (box.value.length >0) && (box.value.replace(/\s/g,"").search(theReg) == -1) ) {
+            box.style.backgroundColor=warnCol;
+        } else {
+            box.style.backgroundColor="#ffffff";
+            if ( (box.value.search(phoneReg) != -1) && (box.value.indexOf(' ') == -1) )
+                box.value = box.value.substring(0,5) + " " + box.value.substring(5);
+        }
+      }
+
+      function checkDob(box, status, schYr) {
+        var OK = true;
+        if (box.value.search(dateReg) == -1) OK = false
+        else {
+            var dateMatch = date1Reg.exec(box.value)
+            if (dateMatch != null) {
+                var days = dateMatch[1] * 1;
+                var month = dateMatch[2] - 1;
+                var year = dateMatch[3] * 1;
+                if (year < 100) year += (year<45)?2000:1900;
+                if ( (year<1945) | (year>2016) ) OK = false
+                else if ( (year>2006) & (schYr != "P-C") ) OK = false
+                else if ( month > 11 ) OK = false
+                else if ( (days < 1) | (days > 31) ) OK = false
+                else if ( (month==1) & (days > 29) ) OK = false
+                else if ( ((month==3)|(month==5)|(month==8)|(month==10)) & (days > 30) ) OK = false
+                else {
+                    box.value = days.toString() + " " + months[month] + " " + year.toString();
+                }
+            } else {
+                var dateMatch = date2Reg.exec(box.value)
+                if (dateMatch != null) {
+                    var days = dateMatch[1] * 1;
+                    var month = dateMatch[2].substr(0,1).toUpperCase() + dateMatch[2].substr(1,2).toLowerCase();
+                    var year = dateMatch[3] * 1;
+                    if (year < 100) year += (year<45)?2000:1900;
+                    if ( (year<1945) | (year>2016) ) OK = false
+                    else if ( (year>2006) & (schYr != "P-C") ) OK = false
+                    else if ( (days < 1) | (days > 31) ) OK = false
+                    else if ( (month=="Feb") & (days > 29) ) OK = false
+                    else if ( ((month=="Apr")|(month=="Jun")|(month=="Sep")|(month=="Nov")) & (days > 30) ) OK = false
+                    else {
+                        box.value = days.toString() + " " + month + " " + year.toString();
+                    }
+                }
+                else OK = false;
+            }
+        }
+        if (status.value.indexOf(dobErr) == -1) {
+            if (!OK) {
+                status.value += dobErr;
+                box.style.backgroundColor=errCol;
+            }
+            else
+                box.style.backgroundColor="#ffffff";
+        } else {
+            if (OK) {
+                status.value.replace(dobErr, "");
+                box.style.backgroundColor="#ffffff";
+            }
+        }
+        return OK;
+      }
+
+      function checkPhone(box1, box2, status) {
+        var OK = true;
+        warnReg(box1, phoneReg);
+        warnReg(box2, phoneReg);
+        if (status.value.indexOf(phoneErr) == -1) {
+          if ((box1.value.replace(/\s/g,"").search(phoneReg) == -1) && (box2.value.replace(/\s/g,"").search(phoneReg) == -1)) {
+              status.value += phoneErr;
+              OK = false;
+              box1.style.backgroundColor=errCol;
+          }
+          else
+              box1.style.backgroundColor="#ffffff";
+        }
+        else {
+          if ((box1.value.replace(/\s/g,"").search(phoneReg) == -1) && (box2.value.replace(/\s/g,"").search(phoneReg) == -1)) {
+              OK = false;
+          } else {
+              status.value.replace(phoneErr, "");
+              box1.style.backgroundColor="#ffffff";
+          }
+        }
+        if ((box1.value == "") && OK) {
+            box1.value = box2.value;
+        }
+        return OK;
+      }
+
+      function checkPayOpt(box1, box2, box3, box4, box5, box6, box7, status) {
+        var OK = true;
+        if (document.getElementById("entry_6").value == "P-C")
+          return OK;
+        if (status.value.indexOf(payOptErr) == -1) {
+          if ((box1.checked == false) & (box2.checked == false) & (box3.checked == false) & (box4.checked == false) & (box5.checked == false) & (box6.checked == false) & (box7.checked == false)) {
+            status.value += payOptErr;
+            OK = false;
+          }
+        }
+        else {
+          if ((box1.checked == false) & (box2.checked == false) & (box3.checked == false) & (box4.checked == false) & (box5.checked == false) & (box6.checked == false) & (box7.checked == false)) {
+            OK = false;
+          } else status.value.replace(payOptErr, "");
+        }
+        return OK;
+      }
+
+      function checkPayMethod(box1, box2, status) {
+        var OK = true;
+        if (status.value.indexOf(payMethodErr) == -1) {
+          if ((box1.checked == false) & (box2.checked == false)) {
+            status.value += payMethodErr;
+            OK = false;
+            box1.color="#ff0000";
+          }
+          else
+            box1.color="#000000";
+        }
+        else {
+          if ((box1.checked == false) & (box2.checked == false)) {
+            OK = false;
+          } else {
+            status.value.replace(payMethodErr, "");
+            box1.color="#000000";
+          }
+        }
+        return OK;
+      }
+
+      function confirm(frm, value) {
+        if ( (frm.group_59_1.checked) && (frm.group_60_1.checked) ) frm2.submit.disabled = false
+        else if ( (frm.group_59_1.checked) && (frm.group_25_3.checked) ) frm2.submit.disabled = false
+        else frm2.submit.disabled = true;
+      }
+
+      function checkNeeded(frm, box) {
+        frm.checkButton.disabled = false;
+        document.getElementById("ref_01").style.display = 'none';
+        if (box.style.backgroundColor != "#ffffff") {
+            box.style.backgroundColor="#ffffff";
+            frm.noentry_61.value = "";
+            frm.noentry_61.style.display = "none";
+        }
+      }
+
+      function radioCheckNeeded(frm, box) {
+        frm.checkButton.disabled = false;
+        document.getElementById("ref_01").style.display = 'none';
+        if (box.style.backgroundColor != "#74A8E6") {
+            box.style.backgroundColor="#74A8E6";
+            frm.noentry_61.value = "";
+            frm.noentry_61.style.display = "none";
+        }
+      }
+
+      function checkNeeded2(frm, box1, box2) {
+        checkNeeded(frm, box1);
+        checkNeeded(frm, box2);
+      }
+
+      function checkYear(frm, box) {
+        if ( (box.value == "11") || (box.value == "JL") ) {
+            document.getElementById("jo-text").style.display = "block";
+            document.getElementById("to-text").style.display = "none";
+            document.getElementById("tc-text").style.display = "none";
+            document.getElementById("camperTxt1").style.display = "block";
+            document.getElementById("camperTxt2").style.display = "table-row";
+            document.getElementById("officerTxt1").style.display = "none";
+            document.getElementById("entry_11_label").style.display = "block";
+            document.getElementById("entry_11").style.display = "block";
+            document.getElementById("normalPayment").style.display = "block";
+            document.getElementById("officerCookPayment").style.display = "none";
+            document.getElementById("group_25_1_opt").style.display = "block"
+            document.getElementById("group_25_2_opt").style.display = "block"
+            document.getElementById("group_25_4_opt").style.display = "none"
+            document.getElementById("group_25_5_opt").style.display = "none"
+            document.getElementById("group_25_6_opt").style.display = "none"
+            document.getElementById("group_25_7_opt").style.display = "none"
+            document.getElementById("payment_div").style.display = "block"
+        }
+        else if (box.value == "L") {
+            document.getElementById("jo-text").style.display = "none";
+            document.getElementById("to-text").style.display = "block";
+            document.getElementById("tc-text").style.display = "none";
+            document.getElementById("camperTxt1").style.display = "none";
+            document.getElementById("camperTxt2").style.display = "none";
+            document.getElementById("officerTxt1").style.display = "block";
+            document.getElementById("entry_11_label").style.display = "none";
+            document.getElementById("entry_11").style.display = "none";
+            document.getElementById("entry_10").value = document.getElementById("entry_2").value + " " + document.getElementById("entry_1").value;
+            document.getElementById("entry_19").value = document.getElementById("entry_7").value;
+            document.getElementById("entry_21").value = document.getElementById("entry_8").value;
+            document.getElementById("normalPayment").style.display = "none";
+            document.getElementById("officerCookPayment").style.display = "block";
+            document.getElementById("group_25_1_opt").style.display = "none"
+            document.getElementById("group_25_2_opt").style.display = "none"
+            document.getElementById("group_25_4_opt").style.display = "block"
+            document.getElementById("group_25_5_opt").style.display = "block"
+            document.getElementById("group_25_6_opt").style.display = "none"
+            document.getElementById("group_25_7_opt").style.display = "block"
+            document.getElementById("payment_div").style.display = "block"
+        }
+        else if (box.value == "T-C") {
+            document.getElementById("jo-text").style.display = "none";
+            document.getElementById("to-text").style.display = "none";
+            document.getElementById("tc-text").style.display = "block";
+            document.getElementById("camperTxt1").style.display = "none";
+            document.getElementById("camperTxt2").style.display = "none";
+            document.getElementById("officerTxt1").style.display = "block";
+            document.getElementById("entry_11_label").style.display = "none";
+            document.getElementById("entry_11").style.display = "none";
+            document.getElementById("entry_10").value = document.getElementById("entry_2").value + " " + document.getElementById("entry_1").value;
+            document.getElementById("normalPayment").style.display = "none";
+            document.getElementById("officerCookPayment").style.display = "block";
+            document.getElementById("group_25_1_opt").style.display = "none"
+            document.getElementById("group_25_2_opt").style.display = "none"
+            document.getElementById("group_25_4_opt").style.display = "none"
+            document.getElementById("group_25_5_opt").style.display = "block"
+            document.getElementById("group_25_6_opt").style.display = "block"
+            document.getElementById("group_25_7_opt").style.display = "block"
+            document.getElementById("payment_div").style.display = "block"
+        }
+        else if (box.value == "T-Cj") {
+            document.getElementById("jo-text").style.display = "none";
+            document.getElementById("to-text").style.display = "none";
+            document.getElementById("tc-text").style.display = "block";
+            document.getElementById("camperTxt1").style.display = "block";
+            document.getElementById("camperTxt2").style.display = "table-row";
+            document.getElementById("officerTxt1").style.display = "none";
+            document.getElementById("entry_11_label").style.display = "block";
+            document.getElementById("entry_11").style.display = "block";
+            document.getElementById("normalPayment").style.display = "block";
+            document.getElementById("officerCookPayment").style.display = "none";
+            document.getElementById("group_25_1_opt").style.display = "none"
+            document.getElementById("group_25_2_opt").style.display = "none"
+            document.getElementById("group_25_4_opt").style.display = "none"
+            document.getElementById("group_25_5_opt").style.display = "block"
+            document.getElementById("group_25_6_opt").style.display = "block"
+            document.getElementById("group_25_7_opt").style.display = "none"
+            document.getElementById("payment_div").style.display = "block"
+        }
+        else if (box.value == "P-C") {
+            document.getElementById("jo-text").style.display = "none";
+            document.getElementById("to-text").style.display = "none";
+            document.getElementById("tc-text").style.display = "none";
+            document.getElementById("camperTxt1").style.display = "block";
+            document.getElementById("camperTxt2").style.display = "table-row";
+            document.getElementById("officerTxt1").style.display = "none";
+            document.getElementById("entry_11_label").style.display = "block";
+            document.getElementById("entry_11").style.display = "block";
+            document.getElementById("payment_div").style.display = "none"
+        }
+        else {
+            document.getElementById("jo-text").style.display = "none";
+            document.getElementById("to-text").style.display = "none";
+            document.getElementById("tc-text").style.display = "none";
+            document.getElementById("camperTxt1").style.display = "block";
+            document.getElementById("camperTxt2").style.display = "table-row";
+            document.getElementById("officerTxt1").style.display = "none";
+            document.getElementById("entry_11_label").style.display = "block";
+            document.getElementById("entry_11").style.display = "block";
+            document.getElementById("normalPayment").style.display = "block";
+            document.getElementById("officerCookPayment").style.display = "none";
+            document.getElementById("group_25_1_opt").style.display = "block"
+            document.getElementById("group_25_2_opt").style.display = "block"
+            document.getElementById("group_25_4_opt").style.display = "none"
+            document.getElementById("group_25_5_opt").style.display = "none"
+            document.getElementById("group_25_6_opt").style.display = "none"
+            document.getElementById("group_25_7_opt").style.display = "none"
+            document.getElementById("payment_div").style.display = "block"
+        }
+        frm.checkButton.disabled = false;
+        document.getElementById("ref_01").style.display = 'none';
+        document.getElementById("group_25_1").checked=false;
+        document.getElementById("group_25_2").checked=false;
+        document.getElementById("group_25_3").checked=false;
+        document.getElementById("group_25_4").checked=false;
+        document.getElementById("group_25_5").checked=false;
+        document.getElementById("group_25_6").checked=false;
+        document.getElementById("group_25_7").checked=false;
+        if (box.style.backgroundColor != "#ffffff") {
+            box.style.backgroundColor="#ffffff";
+            frm.noentry_61.value = "";
+            frm.noentry_61.style.display = "none";
+        }
+      }
+
+      function checkApplication(frm){
+        var OK = true;
+        var refDigs = 0;
+        var refLet
+        frm2 = document.getElementById("ss-form2");
+        frm.noentry_61.value = "";
+        OK = checkLength(frm.entry_1, frm.noentry_61, 2, surnameErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_2, frm.noentry_61, 2, firstnameErr, errCol) ? OK : false;
+        OK = checkDob(frm.entry_3, frm.noentry_61, frm.entry_6.value) ? OK : false;
+        //OK = checkLength(frm.entry_5, frm.noentry_61, 6, schoolErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_6, frm.noentry_61, 1, yearErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_4, frm.noentry_61, 1, genderErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_9, frm.noentry_61, 2, titleErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_10, frm.noentry_61, 4, pnameErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_12, frm.noentry_61, 4, addrErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_15, frm.noentry_61, 4, townErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_16, frm.noentry_61, 4, countyErr, errCol) ? OK : false;
+        if (frm.entry_16.value.toLowerCase() != "france" ) {
+          OK = checkReg(frm.entry_17, frm.noentry_61, postReg, postErr, errCol) ? OK : false;
+        }
+        OK = checkPhone(frm.entry_18, frm.entry_19, frm.noentry_61) ? OK : false;
+        OK = checkRegNoSpace(frm.entry_21, frm.noentry_61, emailReg, emailErr, errCol) ? OK : false;
+        OK = checkPayOpt(frm.group_25_1, frm.group_25_2, frm.group_25_3, frm.group_25_4, frm.group_25_5, frm.group_25_6, frm.group_25_7, frm.noentry_61) ? OK : false;
+        
+        warnReg(frm.entry_7,  phoneReg);
+        warnReg(frm.entry_8,  emailReg);
+        warnReg(frm.entry_20, phoneReg);
+        warnReg(frm.entry_27, phoneReg);
+        warnReg(frm.entry_22, emailReg);
+
+        if (OK == true)
+        {
+          var ref;
+          var d = new Date(frm.entry_3.value);
+          var d2 = new Date();
+          var po;
+          var us = Number(d2.getSeconds()) * 1000 + Number(d2.getMilliseconds());
+
+          po = (frm.group_25_1.checked) ? "A/" : ((frm.group_25_2.checked) ? "B/" : "C/");
+
+          // Do capitalisation of initial letters in all relevant fields
+          capital(frm.entry_1);
+          capital2(frm.entry_1);	// surnames and first names could be hyphenated
+          capital(frm.entry_2);
+          capital2(frm.entry_2);
+          capital(frm.entry_9);
+          if (frm.entry_5.value.length > 0) capital(frm.entry_5);
+          capital(frm.entry_10);
+          capital2(frm.entry_10);	// again names could have hyphens
+          if (frm.entry_11.value.length > 0) {
+              capital(frm.entry_11);
+              capital2(frm.entry_11);
+          }
+          capital(frm.entry_12);
+          if (frm.entry_13.value.length > 0) capital(frm.entry_13);
+          if (frm.entry_14.value.length > 0) capital(frm.entry_14);
+          frm.entry_15.value = frm.entry_15.value.toUpperCase();
+          capital(frm.entry_16);
+          frm.entry_17.value = frm.entry_17.value.toUpperCase();
+
+
+          if (d.getMonth() > 8)
+              refDigs = d.getMonth() * 100 + d.getDate() + 160
+          else
+              refDigs = d.getMonth() * 100 + d.getDate() + 1110;
+          ref = (frm.entry_1.value + frm.entry_2.value).substring(0,5).toUpperCase()
+                + frm.entry_2.value.substring(0,2).toUpperCase()
+                + d.getFullYear().toString().substring(2,4)
+                + refDigs.toString().substring(1,4)
+                + po + us.toString(16).substring(0,2).toUpperCase();
+          frm.entry_30.value = ref;
+          frm.checkButton.disabled = true;
+          frm.noentry_61.style.display = "none";
+          if (frm.group_59_1.checked) {
+            frm2.submit.disabled = false;
+            frm.group_59_1.click();
+          }
+          if (frm.group_60_1.checked) {
+            frm2.submit.disabled = false;
+            frm.group_60_1.click();
+          }
+          if (frm.group_25_3.checked) {
+              document.getElementById("group_60_1").style.display = 'none';
+              document.getElementById("group_60_2").style.display = 'none';
+          } else {
+              document.getElementById("group_60_1").style.display = 'block';
+              document.getElementById("group_60_2").style.display = 'block';
+          }
+          document.getElementById("ref_01").style.display = 'block';
+        }
+        else
+        {
+          frm.noentry_61.style.color = "#ff0000";
+          frm.noentry_61.style.display = "block";
+        }
+        subApplication(frm);
+      }
+      function subApplication(frm){
+          frm2.entry_2710637.value = frm.entry_1.value;
+          frm2.entry_2421385.value = frm.entry_2.value;
+          var msec = Date.parse(frm.entry_3.value);
+          var dob = new Date(msec);
+          frm2.entry_2444764.value = dob.getDate()+"/"+(dob.getMonth()+1)+"/"+dob.getFullYear();
+          frm2.entry_2192772.value = frm.entry_4.value;
+          frm2.entry_2409256.value = frm.entry_5.value;
+          frm2.entry_2241985.value = frm.entry_6.value;
+          frm2.entry_2713532.value = frm.entry_7.value;
+          frm2.entry_2503013.value = frm.entry_8.value;
+          frm2.entry_2652308.value = frm.entry_9.value;
+          frm2.entry_2603195.value = frm.entry_10.value;
+          frm2.entry_2192229.value = frm.entry_11.value;
+          frm2.entry_2165320.value = frm.entry_12.value;
+          frm2.entry_2092612.value = frm.entry_13.value;
+          frm2.entry_2176662.value = frm.entry_14.value;
+          frm2.entry_2098730.value = frm.entry_15.value;
+          frm2.entry_2408433.value = frm.entry_16.value;
+          frm2.entry_2988440.value = frm.entry_17.value;
+          frm2.entry_2402834.value = frm.entry_18.value;
+          frm2.entry_2622664.value = frm.entry_19.value;
+          frm2.entry_2403474.value = frm.entry_27.value;
+          frm2.entry_2844300.value = frm.entry_20.value;
+          frm2.entry_2468771.value = frm.entry_21.value;
+          frm2.entry_2581294.value = frm.entry_22.value;
+          //frm.entry_2313005.value = frm.entry_24.value;
+          //frm2.entry_2313005.value = "";
+
+          try {
+              var o_radio_group = document.getElementsByName("entry.25.group");
+              var n_radio_group = document.getElementsByName("entry.2656536");
+              n_radio_group[o_radio_group.length].checked = "checked";
+              for (var a = 0; a < o_radio_group.length; a++) {
+                  if (o_radio_group[a].checked) {
+                      n_radio_group[a].checked = o_radio_group[a].checked;
+                      break;
+                  }
+              }
+          } catch (e) { }          
+          
+          //frm.elements["entry.2656536"].value = frm.elements["entry.25.group"].value;
+          frm2.entry_2944612.value = frm.entry_28.value;
+          frm2.entry_2418286.value = frm.entry_30.value;
+      }
+
+      function setRemove(fVal) {
+          if (fVal) {
+              document.getElementById("entry_2313005").value = "Remove";
+          } else {
+              document.getElementById("entry_2313005").value = "";
+          }
+      }
+    //-->
+    </SCRIPT>
+
+</head>
+<body class="ss-base-body" dir="ltr" marginwidth="0" bgcolor="#74a8e6"><div class="ss-form-container">
+<img src="remp_hdr.jpg" width="100%" border="0" margin="0"/>
+<div class="ss-form-heading">
+<h1> <center width="50%"> Membership Application and Booking Form 2016 </center></h1>
+<p></p>
+<div style="text-align:justify"><p>Please fill in the following information and then press the &quot;Check Application&quot; button. A unique reference number will be created which will then be used for all correspondence. Once you are certain all the information is correct then check the confirmation boxes and press the "Apply Now" button (Note: please check all the information very carefully as it is not possible to correct it on-line once the "Apply Now" button has been pressed). Your application will not be confirmed until the correct payment has been received. </p>
+</div>
+<div style="text-align:justify"><p>Please Note: This form requires javascript to perform the processing and data upload. Please ensure that you have enabled javacript in your browser; if nothing appears to happen when you press the &quot;Check Application&quot; button then there is a problem with running the javascript code.</p></div>
+<div class="ss-form-desc"><br />If you have any problems with this form (or need to correct anything after submission) then please email <a href="mailto:admin@rempstoneadventurecamp.org.uk?subject=RemsptoneApplicationIssue">admin@rempstoneadventurecamp.org.uk</a>
+</div><p></p>
+
+<hr class="ss-email-break" style="display:none;">
+<div class="ss-required-asterisk">* Required Information</div></div>
+<div class="ss-form"><form action="https://docs.google.com/forms/d/1424Qs1xYH_DEc-yHPzRC-UM5REtKnHFm7nelAdq8LsQ/formResponse" method="POST" id="ss-form" target="_self" onsubmit="">
+
+<br />
+<br /> <br> 
+<h2>Camper Details</h2>
+<center><table width="90%">
+<tr><td colspan="3">&nbsp;</td><td width="15%">&nbsp;</td></tr>
+<tr><td align="left">
+<div class="errorbox-good">
+<div class="ss-item ss-item-required ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_1">Surname
+<span class="ss-required-asterisk">*</span></label>
+<label class="ss-q-help" for="entry_1"></label>
+<input type="text" name="entry.1.single" value="" class="ss-q-short" id="entry_1" onkeypress="checkNeeded(this.form, this)">
+</div></div></div></td>
+
+
+<td align="left"><div class="errorbox-good">
+<div class="ss-item ss-item-required ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_2">First name
+<span class="ss-required-asterisk">*</span></label>
+<input type="text" name="entry.2.single" value="" class="ss-q-short" id="entry_2" onkeypress="checkNeeded(this.form, this)">
+</div></div></div></td>
+
+
+<td align="left"> <div class="errorbox-good">
+<div class="ss-item ss-item-required ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_3">Date of Birth
+<span class="ss-required-asterisk">*</span></label>
+<label class="ss-q-help" for="entry_3"></label>
+<input type="text" name="entry.3.single" value="DD Mon YYYY" class="ss-q-short" id="entry_3" onClick="if (this.value=='DD Mon YYYY')this.value=''" onkeypress="checkNeeded(this.form, this)">
+</div></div></div></td></tr>
+
+
+<tr><td align="left"> <div class="errorbox-good">
+<div class="ss-item  ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_5">School
+</label>
+<label class="ss-q-help" for="entry_5"></label>
+<input type="text" name="entry.5.single" value="" class="ss-q-short" id="entry_5" onkeypress="checkNeeded(this.form, this)">
+</div></div></div></td>
+
+
+<td align="left"> <div class="errorbox-good">
+<div class="ss-item ss-item-required ss-select"><div class="ss-form-entry"><label class="ss-q-title" for="entry_6">School Year (now)
+<span class="ss-required-asterisk">*</span><a href="#" class="tip"> &nbsp;
+	<span>If you are applying to come as a Junior Leader, Leader or Cook then completing this form is only the first step in the approval process but should be enough to get the ball rolling; please email admin@rempstoneadventurecamp.org.uk if you would like further information on the application process or how you may best serve at camp.</span></a></label>
+<select name="entry.6.single" id="entry_6" onChange="checkYear(this.form, this)"><option value="">- Select -</option> <option value="6">Year 6</option> <option value="7">Year 7</option> <option value="8">Year 8</option> <option value="9">Year 9</option> <option value="10">Year 10</option> <option value="11">Year 11</option> <option value="JL">Junior Leader</option> <option value="L">Leader</option> <option value="P-C">Pre-Camper</option> <option value="T-C">Team Cuisine</option> <option value="T-Cj">Team Cuisine (under 18)</option></select>
+</div></div></div></td>
+
+
+<td align="left"> <div class="errorbox-good">
+<div class="ss-item ss-item-required ss-select"><div class="ss-form-entry"><label class="ss-q-title" for="entry_4">Gender
+<span class="ss-required-asterisk">*</span></label>
+<label class="ss-q-help" for="entry_4"></label>
+<select name="entry.4.single" id="entry_4" onclick="checkNeeded(this.form, this)"><option value="">- Select -</option> <option value="M">Male</option> <option value="F">Female</option></select>
+</div></div></div></td></tr>
+
+
+<tr><td align="left"> <div class="errorbox-good">
+<div class="ss-item  ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_7">Own mobile
+</label>
+<label class="ss-q-help" for="entry_7"></label>
+<input type="text" name="entry.7.single" value="" class="ss-q-short" id="entry_7" onkeypress="checkNeeded(this.form, this)">
+</div></div></div></td>
+
+
+<td align="left"> <div class="errorbox-good">
+<div class="ss-item ss-item-required ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_8">Own Email (If any)
+</label>
+<input type="text" name="entry.8.single" value="" class="ss-q-short" id="entry_8" onkeypress="checkNeeded(this.form, this)">
+</div></div></div></td>
+
+
+<td align="left"> <div class="errorbox-good">
+<div class="ss-item ss-item-required ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_28">Referred By<a href="#" class="tip"> &nbsp;
+	<span>If your child is new to camp then insert the name of the person who recommended camp to you, otherwise leave this field blank</span></a></label>
+
+<input type="text" name="entry.28.single" value="" class="ss-q-short" id="entry_28" onkeypress="checkNeeded(this.form, this)">
+</div></div></div></td></tr>
+</table></center>
+
+
+<p style="text-align:justify">Members&#39; email addresses are not given to anybody other than those directly involved in organising the camp. Copies of any information emailed to members under 16 are sent to parents if an email address is provided.</p>
+<div id="jo-text" style="display:none;text-align:justify"><p>If you are currently in year 11 then you can choose whether you want to come as a camper or would prefer to be considered as a Junior Leader; if you are in year 12 or higher you must do this. To come as a Junior Leader you will need to discuss this with Docco (Revd Dr Jonathan Holmes). Please submit this application form first and select "Junior Leader" in the "School Year" dropdown if you wish to take this route.</p></div>
+<div id="to-text" style="display:none;text-align:justify"><p>If you will be 18 or over at the start of camp then you can be invited to come as a Leader. You will need to submit this application form and you should then receive the "Leader admin pack" and instructions on the rest of the application and approval process.</p></div>
+<div id="tc-text" style="display:none;text-align:justify"><p>If you would like to serve as a member of the cook team then you will need to submit this form and you should then receive the team-cuisine application pack.</p></div>
+
+<h2>Contact Details</h2><br />
+<div id="camperTxt1">One parent should be nominated as the primary contact; all communications will initially be routed through this parent.</div>
+<div id="officerTxt1" style="display:none">Please insert your details as the primary contact.</div>
+
+<center><table width="80%">
+<tr><td colspan="3">&nbsp;</td></tr>
+
+<tr><td>
+<label class="ss-q-title" for="entry_9">Primary Contact<br />title
+<span class="ss-required-asterisk">*</span></label>
+<input type="text" name="entry.9.single" value="" class="ss-q-short" id="entry_9" size="11" onkeypress="checkNeeded(this.form, this)"></td>
+
+
+<td align="left"><label class="ss-q-title" for="entry_10">Primary Contact <br />full name
+<span class="ss-required-asterisk">*</span></label>
+<input type="text" name="entry.10.single" value="" class="ss-q-short" id="entry_10" onkeypress="checkNeeded(this.form, this)"></td>
+
+
+<td align="left"><label class="ss-q-title" for="entry_11" id="entry_11_label">Other parent&#39;s<br />full name
+</label>
+<input type="text" name="entry.11.single" value="" class="ss-q-short" id="entry_11"></td></tr>
+
+
+<tr><td colspan="3">&nbsp;</td></tr>
+<tr><td><label class="ss-q-title" for="entry_12">Address Line 1
+<span class="ss-required-asterisk">*</span></label></td>
+<td colspan="2" align="left"><input type="text" name="entry.12.single" value="" size="57" id="entry_12" onkeypress="checkNeeded(this.form, this)"></td></tr>
+
+
+<tr><td><label class="ss-q-title" for="entry_13">Address Line 2
+</label>
+<label class="ss-q-help" for="entry_13"></label></td>
+<td colspan="2" align="left"><input type="text" name="entry.13.single" value="" size="57" id="entry_13"></td></tr>
+
+<tr><td><label class="ss-q-title" for="entry_14">Address Line 3
+</label>
+<label class="ss-q-help" for="entry_14"></label></td>
+<td colspan="2" align="left"><input type="text" name="entry.14.single" value="" size="57" id="entry_14"></td></tr>
+
+<tr><td><label class="ss-q-title" for="entry_15">Town
+<span class="ss-required-asterisk">*</span></label></td>
+<td colspan="2" align="left"><input type="text" name="entry.15.single" value="" size="57" id="entry_15" onkeypress="checkNeeded(this.form, this)"></td></tr>
+
+<tr><td><label class="ss-q-title" for="entry_16">County
+<span class="ss-required-asterisk">*</span></label></td>
+<td colspan="2" align="left"><input type="text" name="entry.16.single" value="" size="57" id="entry_16" onkeypress="checkNeeded2(this.form, this, this.form.entry_17)"></td></tr>
+
+<tr><td><label class="ss-q-title" for="entry_17">Postcode
+</label></td>
+<td colspan="2" align="left"><input type="text" name="entry.17.single" value="" class="ss-q-short" id="entry_17" onkeypress="checkNeeded(this.form, this)"><a href="#" class="tip"> &nbsp;
+	<span>If you are resident outside the UK then leave this field blank, otherwise your postcode is required</span>
+</a></td></tr>
+<tr><td colspan="3">&nbsp;</td></tr>
+<tr><td><label class="ss-q-title" for="entry_18">Home Phone
+</label>
+<input type="text" name="entry.18.single" value="" class="ss-q-short" id="entry_18" size="13" onkeypress="checkNeeded(this.form, this)"></td>
+
+<td><label class="ss-q-title" for="entry_19">Primary Contact&#39;s Mobile
+</label>
+<label class="ss-q-help" for="entry_19"></label>
+<input type="text" name="entry.19.single" value="" class="ss-q-short" id="entry_19" onkeypress="checkNeeded(this.form, this.form.entry_19)"></td>
+
+<td><label class="ss-q-title" for="entry_21">Primary Contact&#39;s Email
+<span class="ss-required-asterisk">*</span></label>
+<input type="text" name="entry.21.single" value="" class="ss-q-short" id="entry_21" onkeypress="checkNeeded(this.form, this)"></td></tr>
+
+<tr id="camperTxt2"><td> <div class="errorbox-good">
+<div class="ss-item  ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_20">Work phone
+</label>
+<label class="ss-q-help" for="entry_20"></label>
+<input type="text" name="entry.20.single" value="" class="ss-q-short" id="entry_20" size="13" onkeypress="checkNeeded(this.form, this)"></div></div></div></td>
+
+<td><div class="errorbox-good">
+<div class="ss-item ss-item-required ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_27">2nd Parent&#39;s Mobile
+</label>
+<input type="text" name="entry.27.single" value="" class="ss-q-short" id="entry_27" onkeypress="checkNeeded(this.form, this)"></div></div></div></td>
+
+<td> <div class="errorbox-good">
+<div class="ss-item  ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_22">2nd Parent Email
+</label>
+<input type="text" name="entry.22.single" value="" class="ss-q-short" id="entry_22" onkeypress="checkNeeded(this.form, this)"></div></div></div></td></tr></table></center>
+
+<br /><br /> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2313005"><div class="ss-q-title">Address List
+</div></label>
+There is an address list given to staff and campers at the end of camp (without email addresses or telephone numbers) to allow members to keep in contact with each other. Please select the following box only if you wish your address details to be removed from this list.
+<ul class="ss-choices"><li class="ss-choice-item"><input type="checkbox" value="Remove" class="ss-q-checkbox" id="group_24_1" onclick="setRemove(this.checked);">
+<label for="group_56_1">I want our address details to be removed from the camp address list.</label></li>
+</ul>
+</div></div></div>
+<br />
+
+<div class="errorbox-good">
+<div class="ss-item ss-item-required ss-radio" id="payment_div"><h2>Payment Details</h2><br />
+<div class="ss-form-entry"><div id="normalPayment" style="text-align:justify;"><label class="ss-q-title" for="entry_25">Payment
+<span class="ss-required-asterisk">*</span></label>This is how you intend to pay. Full details will be emailed when this application is processed.<br><br>
+<!-- Please note: There is currently an "early booking" offer which is available if the first payment (deposit or full fees) is received before the first of November 2015. This will mean that your child can come to Rempstone 2016 at the 2015 price (&pound;395); after that date the new rate will apply.<br><br> -->
+</div>
+<div id="officerCookPayment" style="display:none;text-align:justify;">
+<label class="ss-q-title" for="entry_25">Donation
+<span class="ss-required-asterisk">*</span></label>Rempstone is only able to operate competitively through the support of those volunteering to be part of the team that organises and delivers the camp, both in terms of time contributed as well as financially.  We would normally ask that you consider making a donation of the most appropriate amounts from the choices below.
+We appreciate that many of our volunteers may need to vary this amount, for reasons that may include not being available for the whole of camp, or current financial circumstances, or agree to make smaller, regular payments over a number of months.  If this is the case, please select the last option below and contact one of the finance team in confidence, either personally or at finance@rempstoneadventurecamp.org.uk.  It is important that this happens promptly, and certainly before final payment is expected, so that we can discuss as necessary, update our records, and budget accordingly.<br><br>
+</div>
+<ul class="ss-choices"><li class="ss-choice-item" id="group_25_1_opt"><input type="radio" name="entry.25.group" value="Full" class="ss-q-radio" id="group_25_1" onclick="radioCheckNeeded(this.form, this)">
+<label class="ss-choice-label" for="group_25_1">I will pay &pound;415 (the full fee plus membership).</label></li>
+<li class="ss-choice-item" style="display:none;" id="group_25_5_opt"><input type="radio" name="entry.25.group" value="FullOfficer" class="ss-q-radio" id="group_25_5" onclick="radioCheckNeeded(this.form, this)">
+<label class="ss-choice-label" for="group_25_5">I will send a Leader donation of at least &pound;415.</label></li>
+<li class="ss-choice-item" style="display:none;" id="group_25_4_opt"><input type="radio" name="entry.25.group" value="F_Unwaged" class="ss-q-radio" id="group_25_4" onclick="radioCheckNeeded(this.form, this)">
+<label class="ss-choice-label" for="group_25_4">I will send an unwaged Leader donation of at least &pound;175.</label></li>
+<li class="ss-choice-item" style="display:none;" id="group_25_6_opt"><input type="radio" name="entry.25.group" value="F_TC" class="ss-q-radio" id="group_25_6" onclick="radioCheckNeeded(this.form, this)">
+<label class="ss-choice-label" for="group_25_6">I will send a T-C donation of at least &pound;125.</label></li>
+<li class="ss-choice-item" style="visibility:visible" id="group_25_2_opt"><input type="radio" name="entry.25.group" value="Deposit" class="ss-q-radio" id="group_25_2" onclick="radioCheckNeeded(this.form, this)">
+<label class="ss-choice-label" for="group_25_2">I will pay &pound;100 (deposit plus membership) and undertake to pay the balance of &pound;315 by 1st June 2016.</label></li>
+<li class="ss-choice-item"><input type="radio" name="entry.25.group" value="Membership" class="ss-q-radio" id="group_25_3" onclick="radioCheckNeeded(this.form, this)">
+<label class="ss-choice-label" for="group_25_3">I will pay &pound;20 for membership only and do not wish to reserve a place on the camp at this stage.</label></li>
+<li class="ss-choice-item" style="display:none" id="group_25_7_opt"><input type="radio" name="entry.25.group" value="DiscussFT" class="ss-q-radio" id="group_25_7" onclick="radioCheckNeeded(this.form, this)">
+<label class="ss-choice-label" for="group_25_7">I will contact the finance team to agree my donation.</label></li>
+<!--<li class="ss-choice-item" style="visibility:hidden;" id="group_25_2_opt"><input type="radio" name="entry.25.group" value="Deposit" class="ss-q-radio" id="group_25_2" onclick="radioCheckNeeded(this.form, this)">
+<label class="ss-choice-label" for="group_25_2">I will pay &pound;100 (deposit plus membership) and undertake to pay the balance of &pound;315 by 1st June 2016.</label></li> -->
+</ul></div></div></div>
+
+<!--
+<br> <div class="errorbox-good">
+<div class="ss-item  ss-radio"><div class="ss-form-entry"><label class="ss-q-title" for="entry_26">Payment Method
+</label>
+Payments made using online or telephone banking considerably reduce the administration required to process your application and expedite the transmission of acknowledgements. Therefore we would ask you to make payments this way if you are able to do so; failing that we will, of course, still accept cheques.
+<label class="ss-q-help" for="entry_26"></label>
+<ul class="ss-choices"><li class="ss-choice-item"><input type="radio" name="entry.26.group" value="On-Line" class="ss-q-radio" id="group_26_1" onclick="radioCheckNeeded(this.form, this)">
+<label class="ss-choice-label" for="group_26_1">I will pay directly into the camp account (on-line banking)</label></li> <li class="ss-choice-item"><input type="radio" name="entry.26.group" value="Cheque" class="ss-q-radio" id="group_26_2" onclick="radioCheckNeeded(this.form, this)">
+<label class="ss-choice-label" for="group_26_2">I will pay by cheque</label></li>
+</ul></div></div></div> -->
+
+<!-- <br> <div class="errorbox-good">
+<div class="ss-item ss-item-required ss-checkbox"><div class="ss-form-entry"><label class="ss-q-title" for="entry_24">Address List
+</label>
+There is an address list issued to staff and campers at the end of camp (without email addresses or telephone numbers) to allow members to keep in contact with each other. Please select the following box only if you wish your address details to be removed from this list.
+<ul class="ss-choices"><li class="ss-choice-item"><input type="checkbox" name="entry.24.group" value="Remove" class="ss-q-checkbox" id="group_24_1">
+<label for="group_56_1">I want our address details to be removed from the camp address list.</label></li>
+</ul></div></div></div>
+-->
+
+<br>
+<div class="ss-item ss-submit"><div class="ss-form-entry"><input type="button" name="checkButton" value="Check Application" onClick="checkApplication(this.form)"> <textarea readonly name="noentry.61.single" value="" cols="68" rows="4" class="ss-q-short" id="noentry_61"> </textarea></div></div>
+<br>
+<div id="ref_01">
+<br> <div class="errorbox-good">
+<div class="ss-item  ss-text">
+<div class="ss-form-entry"><label class="ss-q-title" for="entry_30">Reference
+</label>
+<label class="ss-q-help" for="entry_30">This unique reference will be present in all future correspondence and will ensure integrity of all information concerned with this application</label>
+<input type="text" name="entry.30.single" value="" size="22" class="ss-q-short" id="entry_30" readonly="true"></div></div></div>
+
+<br />
+<label class="ss-q-help" for="group_59_1">Please confirm your agreement with the following statements by ticking the two boxes; this will then enable the "Apply Now" button</label>
+<table><tr><td><input type="checkbox" name="noentry.59.group" value="Accept" id="group_59_1" onClick="confirm(this.form)"></td> 
+<td>&nbsp;&nbsp;</td><td>I confirm that I want to submit an application for Rempstone Adventure Camp 2016 and agree to pay the fees stated above.</td></tr>
+<tr><td><input type="checkbox" name="noentry.60.group" value="Accept" id="group_60_1" onClick="confirm(this.form)"></td> 
+<td>&nbsp;&nbsp;</td><td id="group_60_2">I am willing for my son/daughter to take part, under appropriate supervision, in all activities of the camp.</td></tr></table><br /><br />
+
+<input type="hidden" name="pageNumber" value="0">
+<input type="hidden" name="backupCache" value="">
+<!-- <div class="ss-item ss-navigate"><div class="ss-form-entry">
+<center><input disabled type="submit" name="submit" value="Apply Now"></center></div></div> -->
+
+</div></form>
+<!-- 
+=============================================================================================================
+The Google form goes in here
+=============================================================================================================
+-->
+<form action="https://docs.google.com/forms/d/1424Qs1xYH_DEc-yHPzRC-UM5REtKnHFm7nelAdq8LsQ/formResponse" method="POST" id="ss-form2" target="_self" onsubmit=""><ol role="list" class="ss-question-list" style="padding-left: 0;height:30px;">
+<div style="display:none">
+<div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2710637"><div class="ss-q-title">Surname
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2710637" value="" class="ss-q-short" id="entry_2710637" dir="auto" aria-label="Surname  " aria-required="true" required="" title="">
+<div class="error-message" id="2023959392_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2421385"><div class="ss-q-title">First name
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2421385" value="" class="ss-q-short" id="entry_2421385" dir="auto" aria-label="First name  " aria-required="true" required="" title="">
+<div class="error-message" id="392000018_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2444764"><div class="ss-q-title">Date of Birth
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2444764" value="" class="ss-q-short" id="entry_2444764" dir="auto" aria-label="Date of Birth  " aria-required="true" required="" title="">
+<div class="error-message" id="742436610_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2192772"><div class="ss-q-title">Gender
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.2192772" id="entry_2192772" aria-label="Gender  " aria-required="true" required=""><option value=""></option>
+<option value="- Select -">- Select -</option> <option value="M">M</option> <option value="F">F</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2409256"><div class="ss-q-title">School
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2409256" value="" class="ss-q-short" id="entry_2409256" dir="auto" aria-label="School  " title="">
+<div class="error-message" id="210556728_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-select"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2241985"><div class="ss-q-title">School Year
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<select name="entry.2241985" id="entry_2241985" aria-label="School Year  " aria-required="true" required=""><option value=""></option>
+<option value="- Select -">- Select -</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> <option value="10">10</option> <option value="11">11</option> <option value="JL">JL</option> <option value="L">L</option> <option value="P-C">P-C</option> <option value="T-C">T-C</option> <option value="T-Cj">T-Cj</option></select>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2713532"><div class="ss-q-title">Own mobile
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2713532" value="" class="ss-q-short" id="entry_2713532" dir="auto" aria-label="Own mobile  " title="">
+<div class="error-message" id="1564387327_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2503013"><div class="ss-q-title">Own Email
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2503013" value="" class="ss-q-short" id="entry_2503013" dir="auto" aria-label="Own Email  " title="">
+<div class="error-message" id="1450258855_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2652308"><div class="ss-q-title">Parent&#39;s title
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2652308" value="" class="ss-q-short" id="entry_2652308" dir="auto" aria-label="Parent&#39;s title  " aria-required="true" required="" title="">
+<div class="error-message" id="1193035670_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2603195"><div class="ss-q-title">Parent&#39;s name
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2603195" value="" class="ss-q-short" id="entry_2603195" dir="auto" aria-label="Parent&#39;s name  " aria-required="true" required="" title="">
+<div class="error-message" id="686239611_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2192229"><div class="ss-q-title">Other parent&#39;s name
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2192229" value="" class="ss-q-short" id="entry_2192229" dir="auto" aria-label="Other parent&#39;s name  " title="">
+<div class="error-message" id="1171839226_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2165320"><div class="ss-q-title">Address Line 1
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2165320" value="" class="ss-q-short" id="entry_2165320" dir="auto" aria-label="Address Line 1  " aria-required="true" required="" title="">
+<div class="error-message" id="1196383133_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2092612"><div class="ss-q-title">Address Line 2
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2092612" value="" class="ss-q-short" id="entry_2092612" dir="auto" aria-label="Address Line 2  " title="">
+<div class="error-message" id="713271859_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2176662"><div class="ss-q-title">Address Line 3
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2176662" value="" class="ss-q-short" id="entry_2176662" dir="auto" aria-label="Address Line 3  " title="">
+<div class="error-message" id="1372199177_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2098730"><div class="ss-q-title">Town
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2098730" value="" class="ss-q-short" id="entry_2098730" dir="auto" aria-label="Town  " aria-required="true" required="" title="">
+<div class="error-message" id="1991785308_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2408433"><div class="ss-q-title">County
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2408433" value="" class="ss-q-short" id="entry_2408433" dir="auto" aria-label="County  " aria-required="true" required="" title="">
+<div class="error-message" id="358066145_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2988440"><div class="ss-q-title">Postcode
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2988440" value="" class="ss-q-short" id="entry_2988440" dir="auto" aria-label="Postcode  " title="">
+<div class="error-message" id="1030952723_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2402834"><div class="ss-q-title">Home Phone
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2402834" value="" class="ss-q-short" id="entry_2402834" dir="auto" aria-label="Home Phone  " aria-required="true" required="" title="">
+<div class="error-message" id="1327855542_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2622664"><div class="ss-q-title">Parent&#39;s Mobile
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2622664" value="" class="ss-q-short" id="entry_2622664" dir="auto" aria-label="Parent&#39;s Mobile  " title="">
+<div class="error-message" id="412100173_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2403474"><div class="ss-q-title">2nd Parent&#39;s Mobile
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2403474" value="" class="ss-q-short" id="entry_2403474" dir="auto" aria-label="2nd Parent&#39;s Mobile  " title="">
+<div class="error-message" id="2146315015_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2844300"><div class="ss-q-title">Work phone
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2844300" value="" class="ss-q-short" id="entry_2844300" dir="auto" aria-label="Work phone  " title="">
+<div class="error-message" id="861626557_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2468771"><div class="ss-q-title">Parent Email
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2468771" value="" class="ss-q-short" id="entry_2468771" dir="auto" aria-label="Parent Email  " aria-required="true" required="" title="">
+<div class="error-message" id="588557444_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2581294"><div class="ss-q-title">Alternative Parent Email
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2581294" value="" class="ss-q-short" id="entry_2581294" dir="auto" aria-label="Alternative Parent Email  " title="">
+<div class="error-message" id="764656855_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2313005"><div class="ss-q-title">Address List
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2313005" value="" class="ss-q-short" id="entry_2313005" dir="auto" aria-label="Address List  " title="">
+<div class="error-message" id="980275860_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-radio"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_1350951521"><div class="ss-q-title">Payment Type
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+
+<ul class="ss-choices" role="radiogroup" aria-label="Payment Type  "><li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.2656536" value="Full" id="group_2656536_1" role="radio" class="ss-q-radio" aria-label="Full" required="" aria-required="true"></span>
+<span class="ss-choice-label">Full</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.2656536" value="FullLeader" id="group_2656536_2" role="radio" class="ss-q-radio" aria-label="FullLeader" required="" aria-required="true"></span>
+<span class="ss-choice-label">FullLeader</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.2656536" value="F_Unwaged" id="group_2656536_3" role="radio" class="ss-q-radio" aria-label="F_Unwaged" required="" aria-required="true"></span>
+<span class="ss-choice-label">F_Unwaged</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.2656536" value="F_TC" id="group_2656536_4" role="radio" class="ss-q-radio" aria-label="F_TC" required="" aria-required="true"></span>
+<span class="ss-choice-label">F_TC</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.2656536" value="Deposit" id="group_2656536_5" role="radio" class="ss-q-radio" aria-label="Deposit" required="" aria-required="true"></span>
+<span class="ss-choice-label">Deposit</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.2656536" value="Membership" id="group_2656536_6" role="radio" class="ss-q-radio" aria-label="Membership" required="" aria-required="true"></span>
+<span class="ss-choice-label">Membership</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.2656536" value="DiscussFT" id="group_2656536_7" role="radio" class="ss-q-radio" aria-label="DiscussFT" required="" aria-required="true"></span>
+<span class="ss-choice-label">DiscussFT</span>
+</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.2656536" value="P-C" id="group_2656536_8" role="radio" class="ss-q-radio" aria-label="P-C" required="" aria-required="true"></span>
+<span class="ss-choice-label">P-C</span>
+</label></li></ul>
+<div class="error-message" id="1350951521_errorMessage"></div>
+<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item  ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2944612"><div class="ss-q-title">Referred by
+</div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2944612" value="" class="ss-q-short" id="entry_2944612" dir="auto" aria-label="Referred by  " title="">
+<div class="error-message" id="874849250_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+<div dir="ltr" class="ss-item ss-item-required ss-text"><div class="ss-form-entry">
+<label class="ss-q-item-label" for="entry_2418286"><div class="ss-q-title">Ref
+<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+<span class="ss-required-asterisk" aria-hidden="true">*</span></div>
+<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+<input type="text" name="entry.2418286" value="" class="ss-q-short" id="entry_2418286" dir="auto" aria-label="Ref  " aria-required="true" required="" title="">
+<div class="error-message" id="779472894_errorMessage"></div>
+<div class="required-message">This is a required question</div>
+</div></div></div>
+<input type="hidden" name="draftResponse" value="[,,&quot;7336166532535872895&quot;]
+">
+<input type="hidden" name="pageHistory" value="0">
+
+
+<input type="hidden" name="fbzx" value="7336166532535872895">
+</div>
+<center><div class="ss-item ss-navigate"><table id="navigation-table"><tbody><tr><td class="ss-form-entry goog-inline-block" id="navigation-buttons" dir="ltr">
+<input disabled type="submit" name="submit" value="Apply Now" id="ss-submit" class="jfk-button jfk-button-action ">
+
+</td>
+</tr></tbody></table></div></center></ol></form>
+<!-- 
+=============================================================================================================
+The Google form finishes here
+=============================================================================================================
+-->
+      
+</div>
+<div class="ss-footer">
+<div class="ss-legal"><br />If you have any questions about camp or this form then please email <a href="mailto:admin@rempstoneadventurecamp.org.uk?subject=RemsptoneApplicationFormQuery">admin@rempstoneadventurecamp.org.uk</a>
+</div></div></div>
+</body></html>

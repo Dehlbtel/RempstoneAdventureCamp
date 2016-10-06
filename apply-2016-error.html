@@ -1,0 +1,640 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html><head><link rel="shortcut icon" href="http://www.google.com/images/spreadsheets/forms/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>Rempstone Adventure Camp 2016</title>
+<link href='apply_compiled.css' type='text/css' rel='stylesheet' />
+<!-- <link href='//spreadsheets.google.com/client/css/3386678453-published_form_compiled.css' type='text/css' rel='stylesheet' /> -->
+
+<style type="text/css">
+<!--
+#ref_01 {
+    display: none;
+}
+#group_60_1 {
+    display: none;
+}
+#group_60_2 {
+    display: none;
+}
+#noentry_61 {
+    display: none;
+}
+.ss-choice-item-hidden {
+    display: none;
+}
+#table {
+    border-width: 0px 0px 0px 0px;
+}
+#table th {
+	padding: 0px 0px 0px 0px;
+}
+#table td {
+	padding: 0px 5px 0px 5px;
+}
+a.tip {
+	border-bottom: 1px;
+	text-decoration: none;
+	padding-left: 15px;
+	padding-right: 20px;
+	background: #74A8E6 url(status-info-s.png) 100% 5% no-repeat;
+	color:  #587505;
+}
+
+#transparent a {
+	color:  #E1F63E;	
+}
+
+a.tip:hover {
+	position: relative;
+	cursor: help;
+}
+
+a.tip span {
+	display: none;
+}
+
+a.tip:hover span {
+	display: block;
+   	position: absolute; top: 0px; left: 15px;
+	/* formatting only styles */
+   	padding: 5px; margin: 0px; z-index: 100;
+   	border: none;
+    text-decoration: none;
+	padding-right: 20px;
+	background: #f0f0f0 url(status-info.png) 100% 5% no-repeat;
+	width: 250px;
+	opacity: 0.9;
+	font-weight: normal;
+	/* end formatting */
+}
+
+-->
+</style>
+ 
+<script language="JavaScript">
+    <!--
+      var months   = new Array( "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" );
+      var emailReg = /.+@.+\..{2,}/;
+      var dateReg  = /^\d{1,2}[ /-]((\d{1,2})|([A-Za-z][a-z]{2,}))[ /-]\d{2,4}$/;
+      var date1Reg = /^(\d{1,2})[\./-](\d{1,2})[\./-](\d{2,4})$/;
+      var date2Reg = /^(\d{1,2}) (janu?a?r?y?|febr?u?a?r?y?|marc?h?|apri?l?|may|june?|july?|augu?s?t?|sept?e?m?b?e?r?|octo?b?e?r?|nove?m?b?e?r?|dece?m?b?e?r?) (\d{2,4})$/i;
+      var postReg  = /(^[a-zA-Z]{1,2}\d[0-9a-zA-Z]{0,1} \d[a-zA-Z][a-zA-Z]$)/i;
+      var phoneReg = /^\+?\d[0-9\(\)]{10,15}$/;
+      var frm2 = document.getElementById("ss-form2");
+
+
+      var errCol  = "#ff8080";
+      var warnCol = "#ffe080";
+      var surnameErr   = "Please enter your child's surname\n";
+      var firstnameErr = "Please enter your child's first name\n";
+      var dobErr       = "Please enter your child's correct date-of-birth (e.g. '12 Jan 1996')\n";
+      var schoolErr    = "Please enter the name of your child's school\n";
+      var yearErr      = "Please select your child's current school year\n";
+      var genderErr    = "Please select your child's gender\n";
+      var titleErr     = "Please enter your title (e.g. 'Mr')\n";
+      var pnameErr     = "Please enter your full name in 'Parent's name' field (e.g. 'Helen Bethell')\n";
+      var addrErr      = "Please enter the first line of your address (e.g. '10 Downing Street')\n";
+      var townErr      = "Please enter your postal town (e.g. 'POOLE')\n";
+      var countyErr    = "Please enter your postal county (e.g. 'Dorset')\n";
+      var postErr      = "Please enter your full postcode (e.g. 'BH20 5JH')\n";
+      var phoneErr     = "Please enter at least one contact phone number ('Home' or 'Mobile')\n";
+      var emailErr     = "Please enter a valid email address for all correspondence (e.g. 'myname@myISP.co.uk')\n";
+      var payOptErr    = "Please select payment option (full, deposit or membership-only)\n";
+      var payMethodErr = "Please select payment method (direct or cheque)\n";
+
+      function capital(box) {
+          var a=box.value.split(/\s+/g);
+          for (i = 0 ; i < a.length ; i ++ ) {
+              a[i] = a[i].substring(0, 1).toUpperCase() + a[i].substring(1);
+          }
+          box.value = a.join(' ');
+      }
+
+      function capital2(box) {
+          var a=box.value.split(/-+/g);
+          for (i = 0 ; i < a.length ; i ++ ) {
+              a[i] = a[i].substring(0, 1).toUpperCase() + a[i].substring(1);
+          }
+          box.value = a.join('-');
+      }
+
+      function checkLength(box, status, minLength, errString, bColor) {
+        var OK = true;
+        if (status.value.indexOf(errString) == -1) {
+          if (box.value.length < minLength) {
+            status.value += errString;
+            OK = false;
+            box.style.backgroundColor=bColor;
+          }
+          else
+            box.style.backgroundColor="#ffffff";
+        }
+        else {
+          if (box.value.length < minLength) {
+            OK = false;
+          } else {
+            status.value.replace(errString, "");
+            box.style.backgroundColor="#ffffff";
+          }
+        }
+        return OK;
+      }
+
+      function checkReg(box, status, theReg, errString, bColor) {
+        var OK = true;
+        if (status.value.indexOf(errString) == -1) {
+          if (box.value.search(theReg) == -1) {
+            status.value += errString;
+            OK = false;
+            box.style.backgroundColor=bColor;
+          }
+          else
+            box.style.backgroundColor="#ffffff";
+        }
+        else {
+          if (box.value.search(theReg) == -1) {
+            OK = false;
+          } else {
+            status.value.replace(errString, "");
+            box.style.backgroundColor="#ffffff";
+          }
+        }
+        return OK;
+      }
+
+      function checkRegNoSpace(box, status, theReg, errString, bColor) {
+        var OK = true;
+        if (status.value.indexOf(errString) == -1) {
+          if (box.value.replace(/\s/g,"").search(theReg) == -1) {
+              status.value += errString;
+              OK = false;
+              box.style.backgroundColor=bColor;
+          }
+          else
+              box.style.backgroundColor="#ffffff";
+        }
+        else {
+          if (box.value.replace(/\s/g,"").search(theReg) == -1) {
+              OK = false;
+          } else {
+              status.value.replace(errString, "");
+              box.style.backgroundColor="#ffffff";
+          }
+        }
+        return OK;
+      }
+
+      function warnReg(box, theReg) {
+        if ( (box.value.length >0) && (box.value.replace(/\s/g,"").search(theReg) == -1) ) {
+            box.style.backgroundColor=warnCol;
+        } else {
+            box.style.backgroundColor="#ffffff";
+            if ( (box.value.search(phoneReg) != -1) && (box.value.indexOf(' ') == -1) )
+                box.value = box.value.substring(0,5) + " " + box.value.substring(5);
+        }
+      }
+
+      function checkDob(box, status, schYr) {
+        var OK = true;
+        if (box.value.search(dateReg) == -1) OK = false
+        else {
+            var dateMatch = date1Reg.exec(box.value)
+            if (dateMatch != null) {
+                var days = dateMatch[1] * 1;
+                var month = dateMatch[2] - 1;
+                var year = dateMatch[3] * 1;
+                if (year < 100) year += (year<45)?2000:1900;
+                if ( (year<1945) | (year>2016) ) OK = false
+                else if ( (year>2005) & (schYr != "P-C") ) OK = false
+                else if ( month > 11 ) OK = false
+                else if ( (days < 1) | (days > 31) ) OK = false
+                else if ( (month==1) & (days > 29) ) OK = false
+                else if ( ((month==3)|(month==5)|(month==8)|(month==10)) & (days > 30) ) OK = false
+                else {
+                    box.value = days.toString() + " " + months[month] + " " + year.toString();
+                }
+            } else {
+                var dateMatch = date2Reg.exec(box.value)
+                if (dateMatch != null) {
+                    var days = dateMatch[1] * 1;
+                    var month = dateMatch[2].substr(0,1).toUpperCase() + dateMatch[2].substr(1,2).toLowerCase();
+                    var year = dateMatch[3] * 1;
+                    if (year < 100) year += (year<45)?2000:1900;
+                    if ( (year<1945) | (year>2016) ) OK = false
+                    else if ( (year>2005) & (schYr != "P-C") ) OK = false
+                    else if ( (days < 1) | (days > 31) ) OK = false
+                    else if ( (month=="Feb") & (days > 29) ) OK = false
+                    else if ( ((month=="Apr")|(month=="Jun")|(month=="Sep")|(month=="Nov")) & (days > 30) ) OK = false
+                    else {
+                        box.value = days.toString() + " " + month + " " + year.toString();
+                    }
+                }
+                else OK = false;
+            }
+        }
+        if (status.value.indexOf(dobErr) == -1) {
+            if (!OK) {
+                status.value += dobErr;
+                box.style.backgroundColor=errCol;
+            }
+            else
+                box.style.backgroundColor="#ffffff";
+        } else {
+            if (OK) {
+                status.value.replace(dobErr, "");
+                box.style.backgroundColor="#ffffff";
+            }
+        }
+        return OK;
+      }
+
+      function checkPhone(box1, box2, status) {
+        var OK = true;
+        warnReg(box1, phoneReg);
+        warnReg(box2, phoneReg);
+        if (status.value.indexOf(phoneErr) == -1) {
+          if ((box1.value.replace(/\s/g,"").search(phoneReg) == -1) && (box2.value.replace(/\s/g,"").search(phoneReg) == -1)) {
+              status.value += phoneErr;
+              OK = false;
+              box1.style.backgroundColor=errCol;
+          }
+          else
+              box1.style.backgroundColor="#ffffff";
+        }
+        else {
+          if ((box1.value.replace(/\s/g,"").search(phoneReg) == -1) && (box2.value.replace(/\s/g,"").search(phoneReg) == -1)) {
+              OK = false;
+          } else {
+              status.value.replace(phoneErr, "");
+              box1.style.backgroundColor="#ffffff";
+          }
+        }
+        if ((box1.value == "") && OK) {
+            box1.value = box2.value;
+        }
+        return OK;
+      }
+
+      function checkPayOpt(box1, box2, box3, box4, box5, box6, box7, status) {
+        var OK = true;
+        if (document.getElementById("entry_6").value == "P-C")
+          return OK;
+        if (status.value.indexOf(payOptErr) == -1) {
+          if ((box1.checked == false) & (box2.checked == false) & (box3.checked == false) & (box4.checked == false) & (box5.checked == false) & (box6.checked == false) & (box7.checked == false)) {
+            status.value += payOptErr;
+            OK = false;
+          }
+        }
+        else {
+          if ((box1.checked == false) & (box2.checked == false) & (box3.checked == false) & (box4.checked == false) & (box5.checked == false) & (box6.checked == false) & (box7.checked == false)) {
+            OK = false;
+          } else status.value.replace(payOptErr, "");
+        }
+        return OK;
+      }
+
+      function checkPayMethod(box1, box2, status) {
+        var OK = true;
+        if (status.value.indexOf(payMethodErr) == -1) {
+          if ((box1.checked == false) & (box2.checked == false)) {
+            status.value += payMethodErr;
+            OK = false;
+            box1.color="#ff0000";
+          }
+          else
+            box1.color="#000000";
+        }
+        else {
+          if ((box1.checked == false) & (box2.checked == false)) {
+            OK = false;
+          } else {
+            status.value.replace(payMethodErr, "");
+            box1.color="#000000";
+          }
+        }
+        return OK;
+      }
+
+      function confirm(frm, value) {
+        if ( (frm.group_59_1.checked) && (frm.group_60_1.checked) ) frm2.submit.disabled = false
+        else if ( (frm.group_59_1.checked) && (frm.group_25_3.checked) ) frm2.submit.disabled = false
+        else frm2.submit.disabled = true;
+      }
+
+      function checkNeeded(frm, box) {
+        frm.checkButton.disabled = false;
+        document.getElementById("ref_01").style.display = 'none';
+        if (box.style.backgroundColor != "#ffffff") {
+            box.style.backgroundColor="#ffffff";
+            frm.noentry_61.value = "";
+            frm.noentry_61.style.display = "none";
+        }
+      }
+
+      function radioCheckNeeded(frm, box) {
+        frm.checkButton.disabled = false;
+        document.getElementById("ref_01").style.display = 'none';
+        if (box.style.backgroundColor != "#74A8E6") {
+            box.style.backgroundColor="#74A8E6";
+            frm.noentry_61.value = "";
+            frm.noentry_61.style.display = "none";
+        }
+      }
+
+      function checkNeeded2(frm, box1, box2) {
+        checkNeeded(frm, box1);
+        checkNeeded(frm, box2);
+      }
+
+      function checkYear(frm, box) {
+        if ( (box.value == "11") || (box.value == "JO") ) {
+            document.getElementById("jo-text").style.display = "block";
+            document.getElementById("to-text").style.display = "none";
+            document.getElementById("tc-text").style.display = "none";
+            document.getElementById("camperTxt1").style.display = "block";
+            document.getElementById("camperTxt2").style.display = "table-row";
+            document.getElementById("officerTxt1").style.display = "none";
+            document.getElementById("entry_11_label").style.display = "block";
+            document.getElementById("entry_11").style.display = "block";
+            document.getElementById("normalPayment").style.display = "block";
+            document.getElementById("officerCookPayment").style.display = "none";
+            document.getElementById("group_25_1_opt").style.display = "block"
+            document.getElementById("group_25_2_opt").style.display = "block"
+            document.getElementById("group_25_4_opt").style.display = "none"
+            document.getElementById("group_25_5_opt").style.display = "none"
+            document.getElementById("group_25_6_opt").style.display = "none"
+            document.getElementById("group_25_7_opt").style.display = "none"
+            document.getElementById("payment_div").style.display = "block"
+        }
+        else if (box.value == "TO") {
+            document.getElementById("jo-text").style.display = "none";
+            document.getElementById("to-text").style.display = "block";
+            document.getElementById("tc-text").style.display = "none";
+            document.getElementById("camperTxt1").style.display = "none";
+            document.getElementById("camperTxt2").style.display = "none";
+            document.getElementById("officerTxt1").style.display = "block";
+            document.getElementById("entry_11_label").style.display = "none";
+            document.getElementById("entry_11").style.display = "none";
+            document.getElementById("entry_10").value = document.getElementById("entry_2").value + " " + document.getElementById("entry_1").value;
+            document.getElementById("entry_19").value = document.getElementById("entry_7").value;
+            document.getElementById("entry_21").value = document.getElementById("entry_8").value;
+            document.getElementById("normalPayment").style.display = "none";
+            document.getElementById("officerCookPayment").style.display = "block";
+            document.getElementById("group_25_1_opt").style.display = "none"
+            document.getElementById("group_25_2_opt").style.display = "none"
+            document.getElementById("group_25_4_opt").style.display = "block"
+            document.getElementById("group_25_5_opt").style.display = "block"
+            document.getElementById("group_25_6_opt").style.display = "none"
+            document.getElementById("group_25_7_opt").style.display = "block"
+            document.getElementById("payment_div").style.display = "block"
+        }
+        else if (box.value == "T-C") {
+            document.getElementById("jo-text").style.display = "none";
+            document.getElementById("to-text").style.display = "none";
+            document.getElementById("tc-text").style.display = "block";
+            document.getElementById("camperTxt1").style.display = "none";
+            document.getElementById("camperTxt2").style.display = "none";
+            document.getElementById("officerTxt1").style.display = "block";
+            document.getElementById("entry_11_label").style.display = "none";
+            document.getElementById("entry_11").style.display = "none";
+            document.getElementById("entry_10").value = document.getElementById("entry_2").value + " " + document.getElementById("entry_1").value;
+            document.getElementById("normalPayment").style.display = "none";
+            document.getElementById("officerCookPayment").style.display = "block";
+            document.getElementById("group_25_1_opt").style.display = "none"
+            document.getElementById("group_25_2_opt").style.display = "none"
+            document.getElementById("group_25_4_opt").style.display = "none"
+            document.getElementById("group_25_5_opt").style.display = "block"
+            document.getElementById("group_25_6_opt").style.display = "block"
+            document.getElementById("group_25_7_opt").style.display = "block"
+            document.getElementById("payment_div").style.display = "block"
+        }
+        else if (box.value == "T-Cj") {
+            document.getElementById("jo-text").style.display = "none";
+            document.getElementById("to-text").style.display = "none";
+            document.getElementById("tc-text").style.display = "block";
+            document.getElementById("camperTxt1").style.display = "block";
+            document.getElementById("camperTxt2").style.display = "table-row";
+            document.getElementById("officerTxt1").style.display = "none";
+            document.getElementById("entry_11_label").style.display = "block";
+            document.getElementById("entry_11").style.display = "block";
+            document.getElementById("normalPayment").style.display = "block";
+            document.getElementById("officerCookPayment").style.display = "none";
+            document.getElementById("group_25_1_opt").style.display = "none"
+            document.getElementById("group_25_2_opt").style.display = "none"
+            document.getElementById("group_25_4_opt").style.display = "none"
+            document.getElementById("group_25_5_opt").style.display = "block"
+            document.getElementById("group_25_6_opt").style.display = "block"
+            document.getElementById("group_25_7_opt").style.display = "none"
+            document.getElementById("payment_div").style.display = "block"
+        }
+        else if (box.value == "P-C") {
+            document.getElementById("jo-text").style.display = "none";
+            document.getElementById("to-text").style.display = "none";
+            document.getElementById("tc-text").style.display = "none";
+            document.getElementById("camperTxt1").style.display = "block";
+            document.getElementById("camperTxt2").style.display = "table-row";
+            document.getElementById("officerTxt1").style.display = "none";
+            document.getElementById("entry_11_label").style.display = "block";
+            document.getElementById("entry_11").style.display = "block";
+            document.getElementById("payment_div").style.display = "none"
+        }
+        else {
+            document.getElementById("jo-text").style.display = "none";
+            document.getElementById("to-text").style.display = "none";
+            document.getElementById("tc-text").style.display = "none";
+            document.getElementById("camperTxt1").style.display = "block";
+            document.getElementById("camperTxt2").style.display = "table-row";
+            document.getElementById("officerTxt1").style.display = "none";
+            document.getElementById("entry_11_label").style.display = "block";
+            document.getElementById("entry_11").style.display = "block";
+            document.getElementById("normalPayment").style.display = "block";
+            document.getElementById("officerCookPayment").style.display = "none";
+            document.getElementById("group_25_1_opt").style.display = "block"
+            document.getElementById("group_25_2_opt").style.display = "block"
+            document.getElementById("group_25_4_opt").style.display = "none"
+            document.getElementById("group_25_5_opt").style.display = "none"
+            document.getElementById("group_25_6_opt").style.display = "none"
+            document.getElementById("group_25_7_opt").style.display = "none"
+            document.getElementById("payment_div").style.display = "block"
+        }
+        frm.checkButton.disabled = false;
+        document.getElementById("ref_01").style.display = 'none';
+        document.getElementById("group_25_1").checked=false;
+        document.getElementById("group_25_2").checked=false;
+        document.getElementById("group_25_3").checked=false;
+        document.getElementById("group_25_4").checked=false;
+        document.getElementById("group_25_5").checked=false;
+        document.getElementById("group_25_6").checked=false;
+        document.getElementById("group_25_7").checked=false;
+        if (box.style.backgroundColor != "#ffffff") {
+            box.style.backgroundColor="#ffffff";
+            frm.noentry_61.value = "";
+            frm.noentry_61.style.display = "none";
+        }
+      }
+
+      function checkApplication(frm){
+        var OK = true;
+        var refDigs = 0;
+        var refLet
+        frm2 = document.getElementById("ss-form2");
+        frm.noentry_61.value = "";
+        OK = checkLength(frm.entry_1, frm.noentry_61, 2, surnameErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_2, frm.noentry_61, 2, firstnameErr, errCol) ? OK : false;
+        OK = checkDob(frm.entry_3, frm.noentry_61, frm.entry_6.value) ? OK : false;
+        //OK = checkLength(frm.entry_5, frm.noentry_61, 6, schoolErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_6, frm.noentry_61, 1, yearErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_4, frm.noentry_61, 1, genderErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_9, frm.noentry_61, 2, titleErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_10, frm.noentry_61, 4, pnameErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_12, frm.noentry_61, 4, addrErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_15, frm.noentry_61, 4, townErr, errCol) ? OK : false;
+        OK = checkLength(frm.entry_16, frm.noentry_61, 4, countyErr, errCol) ? OK : false;
+        if (frm.entry_16.value.toLowerCase() != "france" ) {
+          OK = checkReg(frm.entry_17, frm.noentry_61, postReg, postErr, errCol) ? OK : false;
+        }
+        OK = checkPhone(frm.entry_18, frm.entry_19, frm.noentry_61) ? OK : false;
+        OK = checkRegNoSpace(frm.entry_21, frm.noentry_61, emailReg, emailErr, errCol) ? OK : false;
+        OK = checkPayOpt(frm.group_25_1, frm.group_25_2, frm.group_25_3, frm.group_25_4, frm.group_25_5, frm.group_25_6, frm.group_25_7, frm.noentry_61) ? OK : false;
+        
+        warnReg(frm.entry_7,  phoneReg);
+        warnReg(frm.entry_8,  emailReg);
+        warnReg(frm.entry_20, phoneReg);
+        warnReg(frm.entry_27, phoneReg);
+        warnReg(frm.entry_22, emailReg);
+
+        if (OK == true)
+        {
+          var ref;
+          var d = new Date(frm.entry_3.value);
+          var d2 = new Date();
+          var po;
+          var us = Number(d2.getSeconds()) * 1000 + Number(d2.getMilliseconds());
+
+          po = (frm.group_25_1.checked) ? "A/" : ((frm.group_25_2.checked) ? "B/" : "C/");
+
+          // Do capitalisation of initial letters in all relevant fields
+          capital(frm.entry_1);
+          capital2(frm.entry_1);	// surnames and first names could be hyphenated
+          capital(frm.entry_2);
+          capital2(frm.entry_2);
+          capital(frm.entry_9);
+          if (frm.entry_5.value.length > 0) capital(frm.entry_5);
+          capital(frm.entry_10);
+          capital2(frm.entry_10);	// again names could have hyphens
+          if (frm.entry_11.value.length > 0) {
+              capital(frm.entry_11);
+              capital2(frm.entry_11);
+          }
+          capital(frm.entry_12);
+          if (frm.entry_13.value.length > 0) capital(frm.entry_13);
+          if (frm.entry_14.value.length > 0) capital(frm.entry_14);
+          frm.entry_15.value = frm.entry_15.value.toUpperCase();
+          capital(frm.entry_16);
+          frm.entry_17.value = frm.entry_17.value.toUpperCase();
+
+
+          if (d.getMonth() > 8)
+              refDigs = d.getMonth() * 100 + d.getDate() + 160
+          else
+              refDigs = d.getMonth() * 100 + d.getDate() + 1110;
+          ref = (frm.entry_1.value + frm.entry_2.value).substring(0,5).toUpperCase()
+                + frm.entry_2.value.substring(0,2).toUpperCase()
+                + d.getFullYear().toString().substring(2,4)
+                + refDigs.toString().substring(1,4)
+                + po + us.toString(16).substring(0,2).toUpperCase();
+          frm.entry_30.value = ref;
+          frm.checkButton.disabled = true;
+          frm.noentry_61.style.display = "none";
+          if (frm.group_59_1.checked) {
+            frm2.submit.disabled = false;
+            frm.group_59_1.click();
+          }
+          if (frm.group_60_1.checked) {
+            frm2.submit.disabled = false;
+            frm.group_60_1.click();
+          }
+          if (frm.group_25_3.checked) {
+              document.getElementById("group_60_1").style.display = 'none';
+              document.getElementById("group_60_2").style.display = 'none';
+          } else {
+              document.getElementById("group_60_1").style.display = 'block';
+              document.getElementById("group_60_2").style.display = 'block';
+          }
+          document.getElementById("ref_01").style.display = 'block';
+        }
+        else
+        {
+          frm.noentry_61.style.color = "#ff0000";
+          frm.noentry_61.style.display = "block";
+        }
+        subApplication(frm);
+      }
+      function subApplication(frm){
+          frm2.entry_2710637.value = frm.entry_1.value;
+          frm2.entry_2421385.value = frm.entry_2.value;
+          frm2.entry_2444764.value = frm.entry_3.value;
+          frm2.entry_2192772.value = frm.entry_4.value;
+          frm2.entry_2409256.value = frm.entry_5.value;
+          frm2.entry_2241985.value = frm.entry_6.value;
+          frm2.entry_2713532.value = frm.entry_7.value;
+          frm2.entry_2503013.value = frm.entry_8.value;
+          frm2.entry_2652308.value = frm.entry_9.value;
+          frm2.entry_2603195.value = frm.entry_10.value;
+          frm2.entry_2192229.value = frm.entry_11.value;
+          frm2.entry_2165320.value = frm.entry_12.value;
+          frm2.entry_2092612.value = frm.entry_13.value;
+          frm2.entry_2176662.value = frm.entry_14.value;
+          frm2.entry_2098730.value = frm.entry_15.value;
+          frm2.entry_2408433.value = frm.entry_16.value;
+          frm2.entry_2988440.value = frm.entry_17.value;
+          frm2.entry_2402834.value = frm.entry_18.value;
+          frm2.entry_2622664.value = frm.entry_19.value;
+          frm2.entry_2403474.value = frm.entry_27.value;
+          frm2.entry_2844300.value = frm.entry_20.value;
+          frm2.entry_2468771.value = frm.entry_21.value;
+          frm2.entry_2581294.value = frm.entry_22.value;
+          //frm.entry_2313005.value = frm.entry_24.value;
+          //frm2.entry_2313005.value = "";
+
+          try {
+              var o_radio_group = document.getElementsByName("entry.25.group");
+              var n_radio_group = document.getElementsByName("entry.2656536");
+              n_radio_group[o_radio_group.length].checked = "checked";
+              for (var a = 0; a < o_radio_group.length; a++) {
+                  if (o_radio_group[a].checked) {
+                      n_radio_group[a].checked = o_radio_group[a].checked;
+                      break;
+                  }
+              }
+          } catch (e) { }          
+
+          //frm.elements["entry.2656536"].value = frm.elements["entry.25.group"].value;
+          frm2.entry_2944612.value = frm.entry_28.value;
+          frm2.entry_2418286.value = frm.entry_30.value;
+      }
+
+      function setRemove(fVal) {
+          if (fVal) {
+              document.getElementById("entry_2313005").value = "Remove";
+          } else {
+              document.getElementById("entry_2313005").value = "";
+          }
+      }
+    //-->
+    </SCRIPT>
+
+</head>
+<body class="ss-base-body" dir="ltr" marginwidth="0" bgcolor="#74a8e6"><div class="ss-form-container">
+        <img src="remp_hdr.jpg" width="100%" border="0" margin="0"/>
+        <div class="ss-form-heading">
+<h1> <center width="50%"> Membership Application and Booking Form 2016 </center></h1>
+            <p></p>
+            <div style="text-align:justify; color:red;font-weight:bolder;font-size:170%;"><p>Please Note: If you are seeing this page then there is a problem with the Google Servers which should be hosting the booking form page. PLEASE email <a href="mailto:admin@rempstoneadventurecamp.org.uk?subject=Remsptone%20Application%20Form%20Is%20DOWN">admin@rempstoneadventurecamp.org.uk</a> and let us know there is a problem. Alternatively, please phone Dave on 0118 901 7625 (outside working hours) who can check the server and, if necessary, take a booking over the phone. </p>
+            </div><p></p>
+
+           <hr class="ss-email-break" style="display:none;">
+       </div>
+<div class="ss-footer">
+<div class="ss-legal">If you have any questions about camp or this form then please email <a href="mailto:admin@rempstoneadventurecamp.org.uk?subject=RemsptoneApplicationFormQuery">admin@rempstoneadventurecamp.org.uk</a>
+</div></div></div>
+</body></html>
